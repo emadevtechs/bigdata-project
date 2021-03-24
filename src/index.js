@@ -15,19 +15,19 @@ import {
 
 
  const httpsLink = new HttpLink({
-  uri: 'https://fileupload-cloud.hasura.app/v1/graphql',
+  uri: 'https://bigdata-analysis.hasura.app/v1/graphql',
   headers: {
-    'x-hasura-admin-secret': "iuvT4KdYjFELpe7x0teyWjK7wDsxLu9VjTQ46OGzm1v9tvpRZNpbNo4FEPjaS26i"
+    'x-hasura-admin-secret': "1dTqTEMIw9nJ0dHbEA280X1RaVVC91clsQN4Wxi68dppUJxMMkOo7j923koSvy4C"
   }
 });
 
 const wssLink = new WebSocketLink({
-  uri: "wss://fileupload-cloud.hasura.app/v1/graphql",
+  uri: "wss://bigdata-analysis.hasura.app/v1/graphql",
   options: {
     reconnect: true,
     connectionParams: {
       headers: {
-        'x-hasura-admin-secret': "iuvT4KdYjFELpe7x0teyWjK7wDsxLu9VjTQ46OGzm1v9tvpRZNpbNo4FEPjaS26i"
+        'x-hasura-admin-secret': "1dTqTEMIw9nJ0dHbEA280X1RaVVC91clsQN4Wxi68dppUJxMMkOo7j923koSvy4C"
       }
     }
   }
