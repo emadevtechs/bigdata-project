@@ -197,7 +197,7 @@ const Register = () => {
                         <OutlinedInput
                             id="outlined-adornment-password"
                             type={state.showPassword ? 'text' : 'password'}
-                            value={state.password}
+                            value={state.adminPass}
                             onChange={(event) => onHandleChange('adminPass', event)}
                             endAdornment={
                             <InputAdornment position="end">
