@@ -19,6 +19,7 @@ import Register from './components/register';
 import UsersList from './components/usersList';
 import HomePage from './components/homePage';
 import MyProfile from './components/myProfile';
+import AdminPage from './components/admin';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -217,15 +218,6 @@ const App = () => {
           </IconButton>
         </Link>
       </MenuItem>
-      <MenuItem>
-        <Link to="/admin" className={classes.link_style1}>
-          <IconButton aria-label="show 4 new mails" color="inherit">
-            <Typography variant="body2" noWrap>
-              Admin
-                </Typography>
-          </IconButton>
-        </Link>
-      </MenuItem>
       {userID === null ?
       <><MenuItem>
         <Link to="/login" className={classes.link_style1}>
@@ -236,7 +228,7 @@ const App = () => {
           </IconButton>
         </Link>
       </MenuItem>
-      <MenuItem>
+      {/* <MenuItem>
         <Link to="/register" className={classes.link_style1}>
           <IconButton aria-label="show 4 new mails" color="inherit">
             <Typography variant="body2" noWrap>
@@ -244,7 +236,8 @@ const App = () => {
                 </Typography>
           </IconButton>
         </Link>
-      </MenuItem></> :
+      </MenuItem> */}
+      </> :
       <MenuItem onClick={() => onLogoutClick()}>
       <IconButton aria-label="show 4 new mails" color="inherit">
         <Typography variant="body2" noWrap>
@@ -305,13 +298,15 @@ const App = () => {
                 </Typography>
                 </IconButton>
               </Link>
-              <Link to="/register" className={classes.link_style}>
+              {/* <Link to="/register" className={classes.link_style}>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                   <Typography variant="body2" noWrap>
                     Register
                 </Typography>
                 </IconButton>
-              </Link></>}
+              </Link>
+               */}
+               </>}
               <Link to="/users-list" className={classes.link_style}>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                   <Typography variant="body2" noWrap>
@@ -369,6 +364,9 @@ const App = () => {
           </Route>
           <Route path="/my-profile">
             <MyProfile />
+          </Route>
+          <Route path="/admin">
+            <AdminPage />
           </Route>
           <Route path="/">
             <HomePage />
