@@ -97,7 +97,7 @@ const Register = () => {
             message: JSON.stringify({email: state.email, password: state.password}),
             }).then(res => {
               alert('Email successfully sent!')
-              history.push('/')
+              history.push('/admin')
             })
             // Handle errors here however you like, or use a React error boundary
             .catch(err => console.error('Oh well, you failed. Here some thoughts on the error that occured:', err))

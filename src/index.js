@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import MainPage from './MainPage';
 import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from '@apollo/client';
 import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
@@ -57,7 +58,7 @@ const client = createApolloClient();
 ReactDOM.render(
   (<ApolloProvider client={client}>
     <Router>
-      <App />
+      <MainPage />
     </Router>
   </ApolloProvider>),
   document.getElementById('root')

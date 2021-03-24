@@ -135,7 +135,7 @@ const HomePage = () => {
         <div className={classes.container}>
             <Container maxWidth="lg">
             <div className={classes.headerStyle}>
-                <Typography style={{ color: 'white' }} align="left" variant="h5">{ state.userDetails ? "Hi " + state.userDetails.username : "FileTransfer" }</Typography>
+                <Typography style={{ color: 'white' }} align="left" variant="h5">{ state.userDetails ? "Hi " + state.userDetails.username : "BigData-Analysis" }</Typography>
             </div>
             <Paper elevation={3} className={classes.paperCon}>
                 <div>

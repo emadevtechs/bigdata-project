@@ -89,7 +89,7 @@ const Login = () => {
         username: 'bigdataadmin@gmail.com',
       }
       localStorage.setItem('admin_details', JSON.stringify(data))
-      history.push('/')
+      history.push('/admin')
     }else{
     getUser({ variables: {
         email: state.email,

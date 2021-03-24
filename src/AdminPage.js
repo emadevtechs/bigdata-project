@@ -11,9 +11,7 @@ import {
   Route,
   Link, useLocation
 } from "react-router-dom";
-import UploadData from './components/uploadData';
-import About from './components/about';
-import Contact from './components/contact';
+import { useHistory } from "react-router-dom";
 import Login from './components/login';
 import Register from './components/register';
 import UsersList from './components/usersList';
@@ -104,10 +102,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const App = () => {
+const AdminMainPage = () => {
 
   const classes = useStyles();
   const location = useLocation();
+  const history = useHistory();
   const[isAdmin, setAdmin] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [userID, setuserId] = useState(null);
@@ -117,12 +116,13 @@ const App = () => {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   useEffect(() => {
-    const userId = localStorage.getItem('user_id');
-    if (userId) {
-      setuserId(userId)
+    const adminDetails = localStorage.getItem('admin_details');
+    console.log('adminDtails', JSON.parse(adminDetails))
+    if (adminDetails && JSON.parse(adminDetails) && JSON.parse(adminDetails).email) {
+        setAdmin(true)
     } else {
-      // alert("Login First")
-      // history.push('/login')
+      alert("Login First")
+      history.push('/login')
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -167,7 +167,7 @@ const App = () => {
   );
 
   const onLogoutClick = () => {
-    localStorage.removeItem("user_id")
+    localStorage.removeItem("admin_details")
     window.location.reload();
   }
 
@@ -183,33 +183,15 @@ const App = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <Link to="/upload-data" className={classes.link_style1}>
+        <Link to="/admin/users-list" className={classes.link_style1}>
           <IconButton aria-label="show 4 new mails" color="inherit">
             <Typography variant="body2" noWrap>
-              Upload Data
+              Users List
                 </Typography>
           </IconButton>
         </Link>
       </MenuItem>
-      <MenuItem>
-        <Link to="/about" className={classes.link_style1}>
-          <IconButton aria-label="show 4 new mails" color="inherit">
-            <Typography variant="body2" noWrap>
-              About
-                </Typography>
-          </IconButton>
-        </Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/contact" className={classes.link_style1}>
-          <IconButton aria-label="show 4 new mails" color="inherit">
-            <Typography variant="body2" noWrap>
-              Contact
-                </Typography>
-          </IconButton>
-        </Link>
-      </MenuItem>
-      {userID === null ?
+      {!isAdmin ?
       <><MenuItem>
         <Link to="/login" className={classes.link_style1}>
           <IconButton aria-label="show 4 new mails" color="inherit">
@@ -235,35 +217,28 @@ const App = () => {
       <div className="App">
         <AppBar position="static">
           <Toolbar>
-            <Link to="/" className={classes.link_style}>
+            <Link to="/admin" className={classes.link_style}>
               <Typography className={classes.title} variant="h6" noWrap>
                 BigData-Analysis
               </Typography>
             </Link>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <Link to="/upload-data" className={classes.link_style}>
+              <Link to="/admin/users-list" className={classes.link_style}>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                   <Typography variant="body2" noWrap>
-                    Upload Data
+                    User Details
                 </Typography>
                 </IconButton>
               </Link>
-              <Link to="/about" className={classes.link_style}>
+              <Link to="/admin/register" className={classes.link_style}>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                   <Typography variant="body2" noWrap>
-                    About
+                    Create User
                 </Typography>
                 </IconButton>
               </Link>
-              <Link to="/contact" className={classes.link_style}>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                  <Typography variant="body2" noWrap>
-                    Contact
-                </Typography>
-                </IconButton>
-              </Link>
-              {userID === null &&
+              {!isAdmin &&
               <><Link to="/login" className={classes.link_style}>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                   <Typography variant="body2" noWrap>
@@ -299,30 +274,21 @@ const App = () => {
         {renderMobileMenu}
         {renderMenu}
         <Switch>
-          <Route path="/upload-data">
-            <UploadData />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/register">
+          <Route path="/admin/register">
             <Register />
           </Route>
-          <Route path="/my-profile">
-            <MyProfile />
+          <Route path="/admin/users-list">
+            <UsersList />
           </Route>
-          <Route path="/">
-            <HomePage />
+          <Route path="/admin">
+            <AdminPage />
           </Route>
         </Switch>
       </div>
   );
 }
 
-export default App;
+export default AdminMainPage;
