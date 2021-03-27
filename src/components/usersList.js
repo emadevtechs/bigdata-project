@@ -16,48 +16,6 @@ const GET_USERS = gql`
     }
 `;
 
-const GET_MY_MESSAGES = gql`
-    query MyQuery($user_id: uuid, $friend_id: uuid) {
-      messages(where: {user_id: {_eq: $user_id}, friend_id: {_eq: $friend_id}}) {
-        message
-        attime
-        user {
-          id,
-          username
-        }
-        userByUserId {
-          id,
-          username
-        }
-      }
-    }
-`;
-
-const GET_FRIEND_MESSAGES = gql`
-    query FriendQuery($user_id: uuid, $friend_id: uuid) {
-      messages(where: {user_id: {_eq: $user_id}, friend_id: {_eq: $friend_id}}) {
-        message
-        attime
-        user {
-          username
-        }
-        userByUserId {
-          username
-        }
-      }
-    }
-`;
-
-const INSERT_MESSAGES = gql`
-  mutation InsertMesage($userid: uuid, $friendid: uuid, $message: String!) {
-    insert_messages(objects: {friend_id: $friendid, message: $message, user_id: $userid}) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',

@@ -74,7 +74,7 @@ const Register = () => {
         if(data){
             if(data.insert_user && data.insert_user.returning[0] && data.insert_user.returning[0].id){
                 console.log(data,'daa')
-                history.push('/login')
+                history.push('/admin')
             }else{
                 alert('Something went wrong')
             }
